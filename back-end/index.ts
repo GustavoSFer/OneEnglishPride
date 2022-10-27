@@ -1,5 +1,5 @@
 import express from 'express';
-import statusCodes from './statusCodes';
+import route from './src/App/Routers/user';
 
 const app = express();
 
@@ -7,9 +7,7 @@ app.use(express.json());
 
 const PORT = 3001;
 
-app.get('/', (req, res) => {
-  res.status(statusCodes.OK).send('Express + TypeScript')
-});
+app.use('/user', route);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na post ${PORT}`);
