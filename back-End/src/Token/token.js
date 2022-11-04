@@ -4,7 +4,6 @@ const fs = require('fs');
 const secret = fs.readFileSync('./secret.txt', 'utf-8');
 
 const generateToken = (payload) => {
-  console.log('Segredo..>>', secret);
   const token = jwt.sign(payload, secret, {
     algorithm: 'HS256'
   });
