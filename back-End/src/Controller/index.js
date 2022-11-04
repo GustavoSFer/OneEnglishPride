@@ -1,5 +1,5 @@
 const service = require('../Service');
-const { statusCodes } = require('../Util/enumStatusCode');
+// const { statusCodes } = require('../Util/enumStatusCode');
 
 const getAll = async (req, res) => {
   const getUser = await service.getAll();

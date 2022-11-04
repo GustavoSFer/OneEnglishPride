@@ -2,6 +2,7 @@ const model = require('../Model');
 const md5 = require('md5');
 const schemaUser = require('../Joi/schemaUser');
 const statusCodeError = require('../Joi/statusCodeError');
+const { generateToken } = require('../Token/token');
 
 const getAll = async () => {
   const getUser = await model.getAll();
@@ -13,9 +14,11 @@ const createUser = async (name, email, password) => {
   try {
     await schemaUser.validateAsync({ name, email, password });
     const hashPassword = md5(password);
-    const newUser = await model.createUser(name, email, hashPassword);
 
-    return newUser;
+    const newUser = await model.createUser(name, email, hashPassword);
+    const token = generateToken({ name, email });
+    delete newUser.password;
+    return {...newUser, token};
 
   } catch(e) {
 
