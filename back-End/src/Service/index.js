@@ -16,6 +16,8 @@ const createUser = async (name, email, password) => {
     const hashPassword = md5(password);
 
     const newUser = await model.createUser(name, email, hashPassword);
+    if (newUser.code) return newUser;
+    
     const token = generateToken({ name, email });
     delete newUser.password;
     return {...newUser, token};
