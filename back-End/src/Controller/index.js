@@ -7,6 +7,15 @@ const getAll = async (req, res) => {
   return res.status(200).json(getUser);
 };
 
+const loginUser = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  const login = await service.loginUser(email, password);
+  if (login.code) return next(login);
+
+  res.status(200).json(login);
+};
+
 const createUser = async (req, res, next) => {
   const { name, email, password } = req.body;
   const newUser = await service.createUser(name, email, password);
@@ -17,5 +26,6 @@ const createUser = async (req, res, next) => {
 
 module.exports = {
   getAll,
+  loginUser,
   createUser,
 }
