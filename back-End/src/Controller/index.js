@@ -1,5 +1,4 @@
 const service = require('../Service');
-// const { statusCodes } = require('../Util/enumStatusCode');
 
 const getAll = async (req, res) => {
   const getUser = await service.getAll();
@@ -28,4 +27,4 @@ module.exports = {
   getAll,
   loginUser,
   createUser,
-}
+};
