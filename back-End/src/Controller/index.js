@@ -17,6 +17,7 @@ const loginUser = async (req, res, next) => {
 
 const createUser = async (req, res, next) => {
   const { name, email, password } = req.body;
+  
   const newUser = await service.createUser(name, email, password);
   if (newUser.code) return next(newUser);
 
